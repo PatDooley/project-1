@@ -1,0 +1,45 @@
+// Importing necessary modules from Angular
+import { HttpClient, HttpHeaders } from '@angular/common/http'; // Import HttpHeaders module
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+
+// Component decorator to define the component metadata
+@Component({
+  selector: 'app-schedule-meeting', // Selector for the component
+  templateUrl: './schedule-meeting.component.html', // Template URL for the component
+  styleUrl: './schedule-meeting.component.css' // CSS style URL for the component
+})
+
+// Class declaration for the ScheduleMeetingComponent implementing OnInit interface
+export class ScheduleMeetingComponent implements OnInit {
+  meetingForm: FormGroup; // Declaration of FormGroup for meetingForm
+
+  // Constructor function injecting the HttpClient dependency
+  constructor(private http: HttpClient) {}
+
+  // Lifecycle hook called after Angular has initialized all data-bound properties of a directive
+  ngOnInit(): void {
+    // Initialization of meetingForm with FormGroup and FormControls for meetingDate and meetingTime
+    this.meetingForm = new FormGroup({
+      meetingDate: new FormControl(''), // FormControl for meetingDate
+      meetingTime: new FormControl(''), // FormControl for meetingTime
+      meetingTopic: new FormControl(''),
+      attendees: new FormControl('')
+
+    });
+  }
+
+  // Function to handle form submission
+  onSubmitForm() {
+    console.log('meeting submitted'); // Logging message indicating meeting submission
+    console.log(this.meetingForm.value); // Logging form values
+
+    // Constructing headers with the token from sessionStorage
+    const headers = new HttpHeaders().set('token', sessionStorage.getItem('token')!);
+
+    // Sending POST request to server with form data, including headers, and subscribing to the response
+    this.http.post('http://localhost:5000/user-meeting', this.meetingForm.value, { headers }).subscribe((data) => {
+      console.log(data); // Logging the response data
+    });
+  }
+}

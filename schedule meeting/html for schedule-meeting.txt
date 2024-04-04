@@ -1,0 +1,30 @@
+<!-- Wrapper for the meeting scheduling form -->
+<div class="wrapper">
+    <!-- Heading for the meeting scheduling -->
+    <h1>Schedule a Meeting</h1>
+    <!-- Form for scheduling a meeting -->
+    <form id="meetingForm" [formGroup]="meetingForm">
+        <!-- Input box for meeting date -->
+        <div class="input-box">
+            <label for="meetingDate">Date:</label>
+            <input type="date" formControlName="meetingDate" id="meetingDate" name="meetingDate" required>
+        </div>
+        <!-- Input box for meeting time -->
+        <div class="input-box">
+            <label for="meetingTime">Time:</label>
+            <input type="time" formControlName="meetingTime" id="meetingTime" name="meetingTime" required>
+        </div>
+        <!-- Input box for meeting topic -->
+        <div class="input-box">
+            <label for="meetingTopic">Meeting Topic:</label>
+            <input type="text" formControlName="meetingTopic" id="meetingTopic" name="meetingTopic" required>
+        </div>
+        <!-- Input box for number of attendees -->
+        <div class="input-box">
+            <label for="attendees">Number of Attendees:</label>
+            <input type="number" formControlName="attendees" id="attendees" name="attendees" required>
+        </div>
+        <!-- Button to submit the meeting scheduling form -->
+        <button type="submit" class="btn" (click)="onSubmitForm()">Schedule Meeting</button>
+    </form>
+</div>

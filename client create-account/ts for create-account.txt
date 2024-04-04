@@ -1,0 +1,41 @@
+import { HttpClient } from '@angular/common/http'; // Import HttpClient for making HTTP requests
+import { Component, OnDestroy, OnInit } from '@angular/core'; // Import necessary decorators and modules
+import { FormControl, FormGroup } from '@angular/forms'; // Import FormControl and FormGroup for handling form data
+
+@Component({
+  selector: 'app-create-account', // Component selector
+  templateUrl: './create-account.component.html', // Template URL for HTML
+  styleUrl: './create-account.component.css' // Style URL for CSS
+})
+export class CreateAccountComponent implements OnInit { // Class declaration implements OnInit interface
+  registerForm: FormGroup; // FormGroup for registration form
+
+  constructor(private http: HttpClient) {} // Constructor to inject HttpClient for HTTP requests
+
+  ngOnInit(): void { // Lifecycle hook OnInit
+    // Initialize registerForm with form controls
+    this.registerForm = new FormGroup({
+      username: new FormControl(''), // Username form control
+      password: new FormControl(''), // Password form control
+      name: new FormControl(''), // Name form control
+      email: new FormControl(''), // Email form control
+      address: new FormControl(''), // Address form control
+      phone: new FormControl('') // Phone form control
+    });
+  }
+
+  onSubmitForm() { // Method to handle form submission
+    console.log('form submitted'); // Log form submission
+    console.log(this.registerForm.value); // Log form values
+
+    // HTTP POST request to save form data to the server
+    this.http.post('http://localhost:5000/user-account', this.registerForm.value).subscribe((data) => {
+      console.log(data); // Log response data
+    });
+
+    // HTTP GET request to retrieve data from the server
+    this.http.get('http://localhost:5000/all').subscribe((data) => {
+      console.log(data); // Log retrieved data
+    });
+  }
+}

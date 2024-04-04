@@ -1,0 +1,19 @@
+.navbar {
+    background-color: #343a40; /* Dark background color */
+    color: #fff; /* Text color */
+}
+
+.navbar-expand-md {
+    flex-wrap: nowrap; /* Ensure navbar items do not wrap */
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #fff; /* Text color for navbar links */
+}
+
+.fixed-top {
+    position: fixed; /* Fixed positioning */
+    top: 0; /* Stick to the top of the viewport */
+    width: 100%; /* Full width */
+    z-index: 1000; /* Ensure navbar appears above other content */
+}

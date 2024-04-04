@@ -1,0 +1,29 @@
+<!-- Header section -->
+<header>
+    <!-- AAF title -->
+    <h2>AAF</h2>
+    
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <ul>
+            <!-- Home link -->
+            <a routerLink="/">Home</a>
+            &nbsp; &nbsp; 
+            
+            <!-- Create Account link -->
+            <a routerLink="/create-account">Create Account</a>
+            &nbsp; &nbsp; 
+            
+            <!-- Schedule a Meeting link -->
+            <a routerLink="/schedule-meeting">Schedule a meeting</a>
+            &nbsp; &nbsp; 
+            
+            <!-- Login form -->
+            <div>
+                <form routerLink="/login">
+                    <button type="Login" class="btnLogin">Login</button>
+                </form>   
+            </div>
+        </ul>  
+    </nav>
+</header>

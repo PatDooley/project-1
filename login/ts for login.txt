@@ -1,0 +1,50 @@
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router'; // Import Router
+import { LocalizedString } from '@angular/compiler';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
+})
+export class LoginComponent implements OnInit {
+  loginForm: FormGroup;
+  userData: any; // Variable to store retrieved user data
+
+  constructor(private http: HttpClient, private formBuilder: FormBuilder, private router: Router) {}
+
+  ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+  }
+
+  // Method to handle login
+  login(): void {
+    if (this.loginForm.invalid) {
+      return; // If form is invalid, do nothing
+    }
+
+    const credentials = this.loginForm.value;
+
+    this.http.post<any>('http://localhost:5000/user', credentials).subscribe(
+      (response) => {
+        this.userData = response; // Store retrieved user data
+        console.log(response); // Handle response from the server
+        localStorage.setItem('token', response.data.token)
+        // Redirect user to the schedule-meeting page upon successful login
+        this.router.navigate(['/schedule-meeting']);
+      },
+      (error) => {
+        console.error('Error:', error); // Handle error from the server
+        // Display error message to the user
+      }
+    );
+  }
+}
+
+
+// {headers: {"token": sessionStorage.getItem("token")!}}

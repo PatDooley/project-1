@@ -1,0 +1,30 @@
+<!-- Wrapper for login form -->
+<div class="wrapper">
+    <!-- Login form -->
+    <form id="loginForm" [formGroup]="loginForm">
+        
+        <!-- Input box for username -->
+        <div class="input-box">
+            <input type="text" formControlName="username" placeholder="username" name="username" id="username" required>
+        </div>
+        
+        <!-- Input box for password -->
+        <div class="input-box">
+            <input type="password" formControlName="password" placeholder="Password" name="password" id="password" required>
+        </div>
+        
+        <!-- Remember me checkbox -->
+        <div class="remember-forgot">
+            <label><input type="checkbox"> Remember me</label><br>
+        </div>
+        
+        <!-- Login button -->
+        <button type="submit" class="btn" (click)="login()">Login</button>   
+        
+        <!-- Link to register page -->
+        <div class="register-link">
+            <p>Don't have an account?! <a routerLink="/create-account">Register here!</a></p>
+        </div>
+    
+    </form>
+</div>
